@@ -1,0 +1,19 @@
+# środowiska venv — każdy tworzy własne z requirements.txt
+.venv/
+venv/
+
+# pliki pośrednie Pythona i Jupytera
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# rozwiązania nie trafiają do repozytorium
+*-rozwiazania.ipynb
+
+# pliki tworzone przez programy z ćwiczeń — każdy ma własne, więc git pull ich nie nadpisze
+01-dziennik-z-bledami/wyniki/
+02-quiz-na-dysku/dane/wyniki.csv
+04-quiz-w-paczkach/start/dane/wyniki.csv
+04-quiz-w-paczkach/projekt/dane/wyniki.csv
+
+.DS_Store
