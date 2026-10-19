@@ -46,6 +46,37 @@ git pull
 
 Commit zabezpiecza twoje rozwiązania, zanim Git dociągnie zmiany. Pliki, które tworzą programy z ćwiczeń (`wyniki/`, `dane/wyniki.csv`), są w `.gitignore`, więc `git pull` ich nie ruszy.
 
+## Ściąga
+
+### Pliki, CSV i JSON
+
+| Kod | Co robi |
+| --- | --- |
+| `with open(p, encoding="utf-8") as f:` | otwiera plik i sam go zamyka, także przy błędzie |
+| `open(p, "w")` / `open(p, "a")` | zapis od zera (kasuje plik!) / dopisanie na końcu |
+| `f.read()` · `for w in f:` · `w.rstrip()` | cały plik jako tekst · wiersz po wierszu · wiersz bez `\n` |
+| `Path(__file__).parent / "dane"` | katalog obok programu, niezależnie od tego, skąd go uruchomisz |
+| `csv.DictReader(f, delimiter=";")` | wiersze CSV jako słowniki; średnik dla plików z polskiego Excela |
+| `csv.DictWriter(f, fieldnames=…)` | zapis słowników; przy `open` dla CSV dodaj `newline=""` |
+| `json.load(f)` / `json.dump(o, f, ensure_ascii=False, indent=2)` | plik JSON ↔ obiekt Pythona |
+| `json.loads(t)` / `json.dumps(o)` | tekst JSON ↔ obiekt Pythona |
+
+### Wyjątki, moduły i testy
+
+| Kod | Co robi |
+| --- | --- |
+| `try:` … `except ValueError as e:` | obsługa wybranego wyjątku |
+| `else:` / `finally:` | gdy w `try` nie było wyjątku / zawsze, na końcu |
+| `raise ValueError("opis")` | zgłoszenie błędu |
+| `class BladPytania(Exception):` | własny wyjątek |
+| `assert warunek, "opis"` | sprawdzenie własnego założenia (wyłącza je `python3 -O`) |
+| `sys.exit("komunikat")` | koniec programu z komunikatem i kodem 1 |
+| `import modul` · `from pakiet.modul import f` | import całego modułu · wybranej funkcji |
+| `if __name__ == "__main__":` | kod tylko przy uruchomieniu pliku, nie przy imporcie |
+| `python3 -m quiz` | uruchomienie pakietu (z katalogu nad nim) |
+| `python3 -m unittest -v` | uruchomienie testów `test*.py` |
+| `self.assertEqual(a, b)` · `with self.assertRaises(E):` | porównanie w teście · test, że wystąpi wyjątek |
+
 ## Co jest w repozytorium
 
 - `01-dziennik-z-bledami/` … `04-quiz-w-paczkach/` — ćwiczenia; każde ma własne `README.md` z instrukcją i strażnika `sprawdz.py`.
